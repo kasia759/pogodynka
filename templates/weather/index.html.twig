@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pogoda dla miasta{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .weather-box { background: #e0f7fa; border: 1px solid #b2ebf2; padding: 20px; border-radius: 8px; margin-top: 20px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Szczegóły pomiaru pogodowego 🌤️</h1>
+
+        {% if measurement %}
+            <div class="weather-box">
+                <p><strong>ID pomiaru:</strong> {{ measurement.id }}</p>
+                <p><strong>Miasto / Lokalizacja:</strong> {{ measurement.location.city }}</p>
+                <p><strong>Temperatura:</strong> {{ measurement.celsius }} °C</p>
+                <p><strong>Data:</strong> {{ measurement.date|date('Y-m-d H:i:s') }}</p>
+            </div>
+        {% else %}
+            <p style="color: red; margin-top: 20px;">Nie znaleziono pomiaru o podanym ID w bazie danych.</p>
+        {% endif %}
+    </div>
+{% endblock %}
